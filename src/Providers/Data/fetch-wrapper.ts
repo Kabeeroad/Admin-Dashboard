@@ -1,7 +1,7 @@
-import { Options } from "@vitejs/plugin-react";
+// import { Options } from "@vitejs/plugin-react";
 import { GraphQLFormattedError } from "graphql"
 
-const customFetch = async (url: string, options: Request) => {
+const customFetch = async (url: string, options: RequestInit) => {
     const accessToken = localStorage.getItem('access_token');
 
     const headers = options.headers as Record<string, string>;
