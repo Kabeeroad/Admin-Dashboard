@@ -44,8 +44,9 @@ function App() {
               }}
             >
               <Routes>
-                <Route index element={<WelcomePage />} />
+                {/* <Route index element={<WelcomePage />} /> */}
                 <Route index element={<Home />} />
+
                 <Route path="/forgotpassword" element={<ForgotPassword />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
