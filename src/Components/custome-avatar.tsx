@@ -7,7 +7,7 @@ const CustomAvatar = ({ name, style, ...rest }: props) => {
   return;
 
   <AntdAvatar
-    alt={"DevOps"}
+    alt={name}
     size="small"
     style={{
       backgroundColor: "blue",
@@ -16,7 +16,7 @@ const CustomAvatar = ({ name, style, ...rest }: props) => {
       border: "none",
       ...style,
     }}
-    {...rest}
+    // {...rest}
   >
     {name}
   </AntdAvatar>;
