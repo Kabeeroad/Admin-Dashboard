@@ -1,3 +1,11 @@
+import { Col, Row } from "antd";
+
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <Row>
+        <Col>hello</Col>
+      </Row>
+    </div>
+  );
 };
