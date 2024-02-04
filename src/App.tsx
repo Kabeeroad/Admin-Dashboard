@@ -21,6 +21,7 @@ import routerBindings, {
 } from "@refinedev/react-router-v6";
 import { App as AntdApp, Layout } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { resource } from "./config/resources";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               notificationProvider={useNotificationProvider}
               routerProvider={routerBindings}
               authProvider={authProvider}
+              resources={resource}
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
@@ -45,11 +47,11 @@ function App() {
             >
               <Routes>
                 {/* <Route index element={<WelcomePage />} /> */}
-                <Route index element={<Home />} />
-
-                <Route path="/forgotpassword" element={<ForgotPassword />} />
+                {/* <Route index element={<Home />} /> */}
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/forgotpassword" element={<ForgotPassword />} />
+
                 <Route
                   element={
                     <Authenticated
