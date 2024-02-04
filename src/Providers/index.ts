@@ -1,3 +1,2 @@
-export * from './Data'
-
 export * from './auth'
+export * from './Data'

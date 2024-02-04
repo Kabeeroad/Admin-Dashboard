@@ -1,6 +1,11 @@
 // import { Options } from "@vitejs/plugin-react";
 import { GraphQLFormattedError } from "graphql"
 
+type Error = {
+    message: string;
+    statusCode: string;
+}
+
 const customFetch = async (url: string, options: RequestInit) => {
     const accessToken = localStorage.getItem('access_token');
 
