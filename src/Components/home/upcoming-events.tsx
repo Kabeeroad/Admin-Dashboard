@@ -3,9 +3,35 @@ import { Badge, Card, List } from "antd";
 import React, { useState } from "react";
 import { Text } from "../text";
 import UpcomingEventsSkeleton from "../skeleton/upcoming-events";
+import { useList } from "@refinedev/core";
+import { DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY } from "@/graphql/queries";
+import { getDate } from "@/utilities/helpers";
+import dayjs from "dayjs";
 
 const UpcomingEvents = () => {
     const [isLoading, setIsLoading] = useState(true);
+
+    const { data, isLoading: eventsLoading } = useList({
+        resource: 'events',
+        pagination: { pageSize: 5 },
+        sorters: [
+            {
+                field: 'startDate',
+                order: 'asc'
+            }
+        ],
+        filters: [
+            {
+                field: 'startDate',
+                operator: 'gte',
+                value: dayjs().format('YYYY-MM-DD')
+            }
+        ],
+        meta: {
+            gqlQuery: DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY
+        }
+    })
+
     return (
         <Card
             style={{ height: "100%" }}
@@ -38,26 +64,28 @@ const UpcomingEvents = () => {
             ) : (
                 <List
                     itemLayout="horizontal"
-                    dataSource={[]}
+                    dataSource={data?.data || []}
                     renderItem={(item) => {
-                        const renderDate = getDate(item.startDate, itme.endDate)
+                        const renderDate = getDate(item.startDate, item.endDate)
+
                         return (
-                            <List.Item>
+                            <List.Item.Meta>
                                 <List.Item.Meta
                                     avatar={<Badge color={item.color} />}
                                     title={<Text size="xs">{renderDate}</Text>}
-                                    description={<Text ellipsis={{ tooltip: true }}
-                                        strong>{item.title}
-                                    </Text>
+                                    description={<Text ellipsis={{ tooltip: true }}}
+                                    strong>
+                                    {item.title}
+                                </Text>
                                     />
-                        </List.Item>
-                          )
-            }}
-                />
-            }
+                            </List.Item>
+                        )
+                    }}
+                >
+                </List>
+            )}
         </Card>
-    
-    );
-};
+    )
+}
 
 export default UpcomingEvents;
