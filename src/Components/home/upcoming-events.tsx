@@ -61,7 +61,7 @@ const UpcomingEvents = () => {
           renderItem={() => <UpcomingEventsSkeleton />}
         />
       ) : (
-        <
+        <List
           itemLayout="horizontal"
           dataSource={data?.data || []}
           renderItem={(item) => {
@@ -79,7 +79,7 @@ const UpcomingEvents = () => {
                   }
                 />
               </List.Item>
-            )
+            );
           }}
         />
       )}
