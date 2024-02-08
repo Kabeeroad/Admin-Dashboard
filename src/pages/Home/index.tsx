@@ -4,11 +4,12 @@ import {
   UpcomingEvents,
 } from "@/Components";
 import { DASHBOARD_TOTAL_COUNTS_QUERY } from "@/graphql/queries";
+import { DashboardTotalCountsQuery } from "@/graphql/types";
 import { useCustom } from "@refinedev/core";
 import { Col, Row } from "antd";
 
 export const Home = () => {
-  const { data, isLoading } = useCustom({
+  const { data, isLoading } = useCustom<DashboardTotalCountsQuery>({
     url: "",
     method: "get",
     meta: {
@@ -20,22 +21,22 @@ export const Home = () => {
       <Row gutter={[32, 32]}>
         <Col xs={24} sm={24} xl={8}>
           <DashboardTotalCountCard
-            resource="compnies"
+            resource="companies"
             isLoading={isLoading}
-            totalCunt={data?.data.compnies.totalCunt}
+            totalCount={data?.data.companies.totalCount}
           />
         </Col>
         <Col xs={24} sm={24} xl={8}>
           <DashboardTotalCountCard
-            resource=" contracts"
-            isloading={isLoading}
-            totalCount={data?.data.contracts.totalCount}
+            resource=" contacts"
+            isLoading={isLoading}
+            totalCount={data?.data.contacts.totalCount}
           />
         </Col>
         <Col xs={24} sm={24} xl={8}>
           <DashboardTotalCountCard
             resource="deals"
-            isloading={isLoading}
+            isLoading={isLoading}
             totalCount={data?.data.deals.totalCount}
           />
         </Col>
