@@ -4,9 +4,9 @@ import { Text } from "../text";
 import { Area, AreaConfig } from "@ant-design/plots";
 
 type Props = {
-  resource: "compnies" | "contracts" | "deals";
+  resource: "companies" | "contacts" | "deals";
   isLoading: boolean;
-  totalCount: number;
+  totalCount?: number;
 };
 
 const DashboardTotalCountCard = ({
@@ -16,12 +16,12 @@ const DashboardTotalCountCard = ({
 }: Props) => {
   const { primaryColor, secondaryColor, icon, title } =
     totalCountVariants[resource];
+
   const config: AreaConfig = {
     data: totalCountVariants[resource].data,
     xField: "index",
     yField: "value",
-    // appendPadding: [1, 0, 0, 0],
-
+    appendPadding: [1, 0, 0, 0],
     padding: 0,
     syncViewPadding: true,
     autoFit: true,
@@ -30,6 +30,15 @@ const DashboardTotalCountCard = ({
     xAxis: false,
     yAxixs: {
       tickCount: 12,
+    },
+    smooth: true,
+    line: {
+      color: primaryColor,
+    },
+    areaStyle: () => {
+      return {
+        fill: `l(270) 0:#fff 0.2${secondaryColor} 1:${primaryColor}`,
+      };
     },
   };
   return (
