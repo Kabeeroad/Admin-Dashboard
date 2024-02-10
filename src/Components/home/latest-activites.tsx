@@ -1,5 +1,5 @@
 import { UnorderedListOutlined } from "@ant-design/icons";
-import { Card, List } from "antd";
+import { Card, List, Space } from "antd";
 import React from "react";
 import { Text } from "../text";
 import { map } from "@ant-design/plots/es/core/utils";
@@ -86,6 +86,18 @@ const LatestActivities = () => {
                       src={deal?.company.avatarUrl}
                       name={deal?.company.name}
                     />
+                  }
+                  description={
+                    <Space size={4}>
+                      <Text strong>{item.user?.name}</Text>
+                      <Text>
+                        {item.action === "CREAT" ? "created" : "moved"}
+                      </Text>
+                      <Text strong>{deal?.title}</Text>
+                      <Text>deal</Text>
+                      <Text>{item.action === "CREAT" ? "in" : "to"}</Text>
+                      <Text strong>{deal?.stage?.title}</Text>
+                    </Space>
                   }
                 />
               </List.Item>
