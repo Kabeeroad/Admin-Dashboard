@@ -5,7 +5,13 @@ import { Text } from "../text";
 import { map } from "@ant-design/plots/es/core/utils";
 import LatestActivitiesSkeleton from "../skeleton/latest-activities";
 import { useList } from "@refinedev/core";
-import { DASHBOARD_LATEST_ACTIVITIES_AUDITS_QUERY } from "@/graphql/queries";
+import {
+  DASHBOARD_LATEST_ACTIVITIES_AUDITS_QUERY,
+  DASHBOARD_LATEST_ACTIVITIES_DEALS_QUERY,
+} from "@/graphql/queries";
+import Item from "antd/es/list/Item";
+import dayjs from "dayjs";
+import CustomAvatar from "../custome-avatar";
 
 const LatestActivities = () => {
   const {
@@ -20,8 +26,27 @@ const LatestActivities = () => {
     },
   });
 
-  const isLoading = true;
-  console.log(audit);
+  const dealIds = audit?.data?.map((audit) => audit?.targetId);
+
+  const { data: deals, isLoading: isLoadingDeals } = useList({
+    resource: "deals",
+    queryOptions: { enabled: !!dealIds?.length },
+    pagination: {
+      mode: "off",
+    },
+    filters: [{ field: "id", operator: "in", value: dealIds }],
+    meta: {
+      gqlQuery: DASHBOARD_LATEST_ACTIVITIES_DEALS_QUERY,
+    },
+  });
+
+  if (isError) {
+    console.log(error);
+    return null;
+  }
+
+  const isLoading = isLoadingAudit || isLoadingDeals;
+
   return (
     <Card
       headStyle={{ padding: "16px" }}
@@ -42,7 +67,31 @@ const LatestActivities = () => {
           renderItem={(_, index) => <LatestActivitiesSkeleton key={index} />}
         />
       ) : (
-        <List />
+        <List
+          itemLayout="horizontal"
+          dataSource={audit?.data}
+          renderItem={(item) => {
+            const deal =
+              deals?.data.find((deal) => deal.id === String(item.targetId)) ||
+              undefined;
+
+            return (
+              <List.Item>
+                <List.Item.Meta
+                  title={dayjs(deal?.createdAt).format("MMM DD, YYYY - HH:mm")}
+                  avatar={
+                    <CustomAvatar
+                      shape="square"
+                      size={48}
+                      src={deal?.company.avatarUrl}
+                      name={deal?.company.name}
+                    />
+                  }
+                />
+              </List.Item>
+            );
+          }}
+        />
       )}
     </Card>
   );
