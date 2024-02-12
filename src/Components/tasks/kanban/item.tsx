@@ -1,4 +1,8 @@
-import { UseDraggableArguments, useDraggable } from "@dnd-kit/core";
+import {
+  DragOverlay,
+  UseDraggableArguments,
+  useDraggable,
+} from "@dnd-kit/core";
 
 interface Props {
   id: string;
@@ -7,8 +11,8 @@ interface Props {
 
 const KanbanItem = ({ children, id, data }: React.PropsWithChildren<Props>) => {
   const { attributes, listeners, setNodeRef, active } = useDraggable({
-    id: "",
-    data: "data",
+    id,
+    data,
   });
   return (
     <div style={{ position: "relative" }}>
@@ -22,7 +26,22 @@ const KanbanItem = ({ children, id, data }: React.PropsWithChildren<Props>) => {
           position: "relative",
           cursor: "grab",
         }}
-      ></div>
+      >
+        {active?.id === id && (
+          <DragOverlay zIndex={1000}>
+            <div
+              style={{
+                borderRadius: "8px",
+                boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+                cursor: "grabbing",
+              }}
+            >
+              {children}
+            </div>
+          </DragOverlay>
+        )}
+        {children}
+      </div>
     </div>
   );
 };
