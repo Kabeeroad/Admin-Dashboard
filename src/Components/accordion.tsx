@@ -1,4 +1,4 @@
-import { AccordionHeaderSkeleton } from "@/components";
+import { AccordionHeaderSkeleton } from "@/Components";
 import { Text } from "./text";
 
 type Props = React.PropsWithChildren<{

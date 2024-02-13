@@ -21,7 +21,8 @@ export {
     LatestActivities
 
 }
-
+export * from './text'
+export * from './accordion'
 export * from "./tasks/form/description"
 export * from "./tasks/form/due-date"
 export * from "./tasks/form/stage"

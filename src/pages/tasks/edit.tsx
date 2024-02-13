@@ -20,7 +20,7 @@ import {
   TitleForm,
   UsersForm,
   UsersHeader,
-} from "@/components";
+} from "@/Components";
 import { Task } from "@/graphql/schema.types";
 
 import { UPDATE_TASK_MUTATION } from "@/graphql/mutations";
