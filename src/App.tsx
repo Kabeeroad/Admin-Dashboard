@@ -32,7 +32,7 @@ import EditTask from "./pages/tasks/edit";
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
+      {/* <GitHubBanner /> */}
       <RefineKbarProvider>
         <AntdApp>
           <DevtoolsProvider>
