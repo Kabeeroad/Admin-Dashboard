@@ -9,6 +9,7 @@ import {
   EyeOutlined,
   MoreOutlined,
 } from "@ant-design/icons";
+import { useDelete } from "@refinedev/core";
 import {
   Button,
   ConfigProvider,
@@ -22,6 +23,7 @@ import Card from "antd/es/card/Card";
 import { MenuProps } from "antd/lib";
 import dayjs from "dayjs";
 import { memo, useMemo } from "react";
+import { useNavigation } from "react-router-dom";
 
 type ProjectCardProps = {
   id: string;
@@ -36,7 +38,9 @@ type ProjectCardProps = {
 };
 const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
   const { token } = theme.useToken();
-  const edit = () => {};
+
+  const { edit } = useNavigation();
+  const { mutate } = useDelete();
 
   const dropdownItems = useMemo(() => {
     const dropdownItems: MenuProps["items"] = [
@@ -45,7 +49,7 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
         key: "1",
         icon: <EyeOutlined />,
         onClick: () => {
-          edit();
+          edit("tasks", id, "replace");
         },
       },
       {
@@ -53,7 +57,15 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
         label: "Delete card",
         key: "2",
         icon: <DeleteOutlined />,
-        onClick: () => {},
+        onClick: () => {
+          mutate({
+            resource: "tasks",
+            id,
+            meta: {
+              operation: "task",
+            },
+          });
+        },
       },
     ];
     return dropdownItems;

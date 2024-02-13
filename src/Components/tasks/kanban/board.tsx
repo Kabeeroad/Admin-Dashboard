@@ -1,4 +1,4 @@
-import { DndContext, DragEndEvent, MouseSensor, useSensor } from "@dnd-kit/core";
+import { DndContext, DragEndEvent, MouseSensor, TouchSensor, useSensor } from "@dnd-kit/core";
 // import { Props } from "@dnd-kit/core/dist/components/DndContext/DndContext";
 import React, { Children } from "react";
 
@@ -38,10 +38,20 @@ export const kanbanBoard = ({ children onDragEnd}: React.
   PropsWithChildren<Props>) => {
 
     const mouseSensor = useSensor(MouseSensor,{
-      activationConstraint: 
-      distance: 5,
+      activationConstraint: {
+        distance: 5,
+      }
       
+
     })
+
+    const touchSensor = useSensor(TouchSensor,{
+      activationConstraint:{
+        distance: 5
+      }
+    })
+
+    const sensors = useSensor(mouseSensor, touchSensor)
   return (
     <DndContext onDragEnd={onDragEnd} sensors={sensors}>
       {children}

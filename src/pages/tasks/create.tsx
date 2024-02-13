@@ -7,7 +7,7 @@ import { Form, Input, Modal } from "antd";
 
 import { CREATE_TASK_MUTATION } from "@/graphql/mutations";
 
-const TasksCreatePage = () => {
+const CreateTask = () => {
   // get search params from the url
   const [searchParams] = useSearchParams();
 
@@ -77,4 +77,4 @@ const TasksCreatePage = () => {
   );
 };
 
-export default TasksCreatePage;
+export default CreateTask;

@@ -25,7 +25,7 @@ import { Task } from "@/graphql/schema.types";
 
 import { UPDATE_TASK_MUTATION } from "@/graphql/mutations";
 
-const TasksEditPage = () => {
+const EditTask = () => {
   const [activeKey, setActiveKey] = useState<string | undefined>();
 
   // use the list method to navigate to the list page of the tasks resource from the navigation hook
@@ -131,4 +131,4 @@ const TasksEditPage = () => {
   );
 };
 
-export default TasksEditPage;
+export default EditTask;
