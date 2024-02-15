@@ -90,14 +90,14 @@ const DashboardTotalCountCard = ({
             <Skeleton.Button
               style={{
                 marginTop: "8px",
-                width: "74px",
+                width: "70px",
               }}
             />
           ) : (
             totalCount
           )}
         </Text>
-        {/* <Area {...config} style={{ width: "20px" }} /> */}
+        {/* <Area   {...config} style={{ width: "50%" }}/> */}
       </div>
     </Card>
   );
