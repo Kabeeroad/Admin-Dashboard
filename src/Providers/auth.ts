@@ -120,9 +120,9 @@ export const authProvider: AuthBindings = {
         method: "post",
         headers: accessToken
           ? {
-              // send the accessToken in the Authorization header
-              Authorization: `Bearer ${accessToken}`,
-            }
+            // send the accessToken in the Authorization header
+            Authorization: `Bearer ${accessToken}`,
+          }
           : {},
         meta: {
           // get the user information such as name, email, etc.

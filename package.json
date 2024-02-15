@@ -20,7 +20,8 @@
     "dayjs": "^1.11.10",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "^6.8.1",
+    "refine": "^0.0.1-alpha"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.2",
