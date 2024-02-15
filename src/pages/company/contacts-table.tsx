@@ -13,13 +13,13 @@ import { Button, Card, Input, Select, Space, Table } from "antd";
 
 import { Contact } from "@/graphql/schema.types";
 
+import { statusOptions } from "@/constants";
 import { COMPANY_CONTACTS_TABLE_QUERY } from "@/graphql/queries";
 
 import { CompanyContactsTableQuery } from "@/graphql/types";
-import { Text } from "@/Components/text";
-import CustomAvatar from "@/Components/custome-avatar";
-import { ContactStatusTag } from "@/Components/tags/contact-status-tag";
-import { statusOptions } from "@/Components/constants";
+import { Text } from "@/components/text";
+import CustomAvatar from "@/components/custom-avatar";
+import { ContactStatusTag } from "@/components/tags/contact-status-tag";
 
 export const CompanyContactsTable = () => {
   // get params from the url
@@ -94,7 +94,7 @@ export const CompanyContactsTable = () => {
         // gqlQuery is used to specify the GraphQL query that should be used to fetch the data.
         gqlQuery: COMPANY_CONTACTS_TABLE_QUERY,
       },
-    }
+    },
   );
 
   return (
@@ -202,3 +202,4 @@ export const CompanyContactsTable = () => {
     </Card>
   );
 };
+

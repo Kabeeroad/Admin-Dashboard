@@ -1,39 +1,34 @@
-import {
-  DashboardOutlined,
-  ProjectOutlined,
-  ShopOutlined,
-} from "@ant-design/icons";
+import { DashboardOutlined, ProjectOutlined, ShopOutlined } from "@ant-design/icons";
 import { IResourceItem } from "@refinedev/core";
 
-export const resource: IResourceItem[] = [
+export const resources: IResourceItem[] = [
   {
-    name: "dashboard",
-    list: "/",
+    name: 'dashboard',
+    list: '/',
     meta: {
-      label: "Dashboard",
-      icon: <DashboardOutlined />,
-    },
+      label: 'Dashboard',
+      icon: <DashboardOutlined />
+    }
   },
   {
-    name: "companies",
-    list: "/companies",
-    show: "/companies",
-    create: "/companies/new",
-    edit: "companies/edit/new",
+    name: 'companies',
+    list: '/companies',
+    show: '/companies/:id',
+    create: '/companies/new',
+    edit: '/companies/edit/:id',
     meta: {
-      label: "Companies",
-      icon: <ShopOutlined />,
-    },
+      label: 'Companies',
+      icon: <ShopOutlined />
+    }
   },
   {
-    name: "tasks",
-    list: "/tasks",
-
-    create: "/tasks/new",
-    edit: "tasks/edit/new",
+    name: 'tasks',
+    list: '/tasks',
+    create: '/tasks/new',
+    edit: '/tasks/edit/:id',
     meta: {
-      label: "Tasks",
-      icon: <ProjectOutlined />,
-    },
-  },
-];
+      label: 'Tasks',
+      icon: <ProjectOutlined />
+    }
+  }
+]

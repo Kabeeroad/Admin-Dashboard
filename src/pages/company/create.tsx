@@ -1,46 +1,44 @@
-import React from "react";
-import CompanyList from "./list";
-import { Avatar, Form, Modal, Select } from "antd";
-import { useGo, useSelect } from "@refinedev/core";
-import { useModalForm } from "@refinedev/antd";
-import { CREATE_COMPANY_MUTATION } from "@/graphql/mutations";
-import FormItem from "antd/es/form/FormItem";
-import { USERS_SELECT_QUERY } from "@/graphql/queries";
-import SelectOptionWithAvatar from "@/Components/select-option-with-avatar";
-import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
-import { UsersSelectQuery } from "@/graphql/types";
+import React from 'react'
+import { CompanyList } from './list'
+import { Form, Input, Modal, Select } from 'antd'
+import { useModalForm, useSelect } from '@refinedev/antd'
+import { useGo } from '@refinedev/core'
+import { CREATE_COMPANY_MUTATION } from '@/graphql/mutations'
+import { USERS_SELECT_QUERY } from '@/graphql/queries'
+import SelectOptionWithAvatar from '@/components/select-option-with-avatar'
+import { GetFieldsFromList } from '@refinedev/nestjs-query'
+import { UsersSelectQuery } from '@/graphql/types'
 
 const Create = () => {
   const go = useGo();
 
   const goToListPage = () => {
     go({
-      to: { resource: "companies", action: "list" },
+      to: { resource: 'companies', action: 'list' },
       options: { keepQuery: true },
-      type: "replace",
-    });
-  };
+      type: 'replace',
+    })
+  }
+
   const { formProps, modalProps } = useModalForm({
-    action: "create",
+    action: 'create',
     defaultVisible: true,
-    resource: "companies",
+    resource: 'companies',
     redirect: false,
-    mutationMode: "pessimistic",
+    mutationMode: 'pessimistic',
     onMutationSuccess: goToListPage,
     meta: {
-      gqlMutation: CREATE_COMPANY_MUTATION,
-    },
-  });
+      gqlMutation: CREATE_COMPANY_MUTATION
+    }
+  })
 
-  const { selectProps, queryResult } = useSelect<
-    GetFieldsFromList<UsersSelectQuery>
-  >({
-    resource: "users",
-    optionLabel: "name",
+  const { selectProps, queryResult } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
+    resource: 'users',
+    optionLabel: 'name',
     meta: {
-      gqlQuery: USERS_SELECT_QUERY,
-    },
-  });
+      gqlQuery: USERS_SELECT_QUERY
+    }
+  })
 
   return (
     <CompanyList>
@@ -55,27 +53,27 @@ const Create = () => {
           <Form.Item
             label="Company name"
             name="name"
-            rules={[{ required: true }]}
+            rules={[{required: true}]}
           >
-            <input placeholder="Please enter a company name" />
+            <Input placeholder="Please enter a company name" />
           </Form.Item>
           <Form.Item
             label="Sales owner"
-            name="salesOwnerid"
-            rules={[{ required: true }]}
+            name="salesOwnerId"
+            rules={[{required: true}]}
           >
-            <Select
+            <Select 
               placeholder="Please select a sales owner"
               {...selectProps}
               options={
                 queryResult.data?.data.map((user) => ({
-                  values: user.id,
+                  value: user.id,
                   label: (
-                    <SelectOptionWithAvatar
+                    <SelectOptionWithAvatar 
                       name={user.name}
                       avatarUrl={user.avatarUrl ?? undefined}
                     />
-                  ),
+                  )
                 })) ?? []
               }
             />
@@ -83,7 +81,7 @@ const Create = () => {
         </Form>
       </Modal>
     </CompanyList>
-  );
-};
+  )
+}
 
-export default Create;
+export default Create

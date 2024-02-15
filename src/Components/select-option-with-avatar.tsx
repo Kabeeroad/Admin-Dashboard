@@ -1,24 +1,25 @@
-import CustomAvatar from "./custome-avatar";
+import CustomAvatar from "./custom-avatar";
 import { Text } from "./text";
 
 type Props = {
-  name: string;
+  name: string,
   avatarUrl?: string;
-  shape?: "circle" | "square";
-};
+  shape?: 'circle' | 'square';
+}
+
 const SelectOptionWithAvatar = ({ avatarUrl, name, shape }: Props) => {
   return (
     <div
       style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "8px",
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px'
       }}
     >
       <CustomAvatar shape={shape} name={name} src={avatarUrl} />
-      <Text> {name}</Text>
+      <Text>{name}</Text>
     </div>
-  );
-};
+  )
+}
 
-export default SelectOptionWithAvatar;
+export default SelectOptionWithAvatar

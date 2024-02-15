@@ -2,7 +2,7 @@ import React from "react";
 
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import { Text } from "@/Components/text";
+import { Text } from "@/components/text";
 
 interface Props {
   onClick: () => void;

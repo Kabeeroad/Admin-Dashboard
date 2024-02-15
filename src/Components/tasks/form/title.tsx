@@ -6,7 +6,7 @@ import { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { Form, Skeleton } from "antd";
 
-import { Text } from "@/Components";
+import { Text } from "@/components";
 import { Task } from "@/graphql/schema.types";
 import {
   UpdateTaskMutation,
